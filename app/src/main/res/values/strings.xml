@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Remote_Health_Monitoring</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_personal__details">Personal_Details</string>
+    <string name="title_activity_h7__sensor__connection">H7_Sensor_Connection</string>
+</resources>
