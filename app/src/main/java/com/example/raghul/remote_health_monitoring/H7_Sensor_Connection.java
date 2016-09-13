@@ -20,9 +20,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +35,6 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 import org.bson.Document;
@@ -64,13 +63,14 @@ public class H7_Sensor_Connection extends ActionBarActivity {
     ArrayList<String> labels;
     ArrayList<Entry> entries;
     int count=0;
-
+    NaiveBayesian nbalgo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_h7__sensor__connection);mHandler = new Handler();
         Intent i=getIntent();
         usersname=i.getStringExtra("usernamee");
+        nbalgo=new NaiveBayesian(usersname);
         device=(TextView)findViewById(R.id.name);
         data1=(TextView)findViewById(R.id.data1);
         data2=(TextView)findViewById(R.id.data2);
@@ -269,9 +269,10 @@ public class H7_Sensor_Connection extends ActionBarActivity {
 
             collection.insertOne(doc);
 
-            MongoCollection<Document> collection2 = database.getCollection("userDetails");
-            MongoCursor<Document> cursorsend = collection.find().iterator();
-            healthcare.bayesian(cursorsend);
+            //MongoCollection<Document> collection2 = database.getCollection("userDetails");
+            //MongoCursor<Document> cursorsend = collection.find().iterator();
+            //healthcare.bayesian(cursorsend);
+            nbalgo.insertToDB(data1.getText().toString(),data1.getText().toString(),data1.getText().toString(),data1.getText().toString());
             return null;
         }
 
