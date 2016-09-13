@@ -35,6 +35,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 import org.bson.Document;
@@ -254,6 +255,10 @@ public class H7_Sensor_Connection extends ActionBarActivity {
 
             MongoCollection<Document> collection = database.getCollection("userDetails");
 
+            MongoClient mongoClient2 = new MongoClient( "192.168.43.89" , 27017 );
+            MongoDatabase database2 = mongoClient.getDatabase("mydb");
+
+
             Document doc = new Document("name", "MongoDB")
                     .append("username", usersname)
                     .append("data1", data1.getText().toString())
@@ -264,6 +269,9 @@ public class H7_Sensor_Connection extends ActionBarActivity {
 
             collection.insertOne(doc);
 
+            MongoCollection<Document> collection2 = database.getCollection("userDetails");
+            MongoCursor<Document> cursorsend = collection.find().iterator();
+            healthcare.bayesian(cursorsend);
             return null;
         }
 
