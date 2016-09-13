@@ -70,7 +70,7 @@ public class healthcare {
                 MongoCursor<Document> cursor=c;
                 while(cursor.hasNext()) {
                     String classn = cursor.get("class");
-                    if(class.equals("abnormal")
+                    if(classn.equals("abnormal"))
                     count_a++;
                     else
                     count_n++;
