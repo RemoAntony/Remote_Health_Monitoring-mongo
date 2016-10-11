@@ -227,7 +227,7 @@ public class Personal_Details extends ActionBarActivity {
 
         protected String doInBackground(String... args) {
 try {
-    MongoClient mongoClient = new MongoClient("192.168.43.89", 27017);
+    MongoClient mongoClient = new MongoClient("192.168.0.6", 27017);
 //            MongoClient mongoClient = new MongoClient( "DELL" , 27017 );
     MongoDatabase database = mongoClient.getDatabase("mydb");
 

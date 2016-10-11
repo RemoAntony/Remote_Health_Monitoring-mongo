@@ -41,7 +41,7 @@ class NaiveBayesian
         count_n = count_a = 0;
 
         //connect to mongo and build classifier
-        MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+        MongoClient mongoClient = new MongoClient( "192.168.0.6" , 27017 );
         DB db = mongoClient.getDB( "test" );
         //boolean auth = db.authenticate(myUserName, myPassword);
         DBCollection coll = db.getCollection("mycol");
@@ -218,8 +218,13 @@ class NaiveBayesian
         }
         return result;
     }
-    public void insertToDB(int HR, int BP, int BR, int pulse, int spo2)
+    public void insertToDB(String hr, String bp, String br, String p, String sp)
     {
+        int HR = Integer.parseInt(hr);
+        int BR = Integer.parseInt(br);
+        int BP = Integer.parseInt(bp);
+        int pulse = Integer.parseInt(p);
+        int spo2 = Integer.parseInt(sp);
         //db table schema: pid, HR, BP, BR, pulse, spo2, class
         if(counter < 20) {
             HRa.add(HR);
@@ -247,7 +252,7 @@ class NaiveBayesian
             String result = classify();
             //now insert all the records in arraylist with class as result in mongodb
             try{
-                MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+                MongoClient mongoClient = new MongoClient( "192.168.0.6" , 27017 );
                 DB db = mongoClient.getDB( "test" );
                 //boolean auth = db.authenticate(myUserName, myPassword);
                 DBCollection coll = db.getCollection("mycol");

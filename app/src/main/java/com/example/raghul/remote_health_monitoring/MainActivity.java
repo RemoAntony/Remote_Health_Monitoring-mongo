@@ -90,7 +90,7 @@ String loginid,passwordlogin;
         int success=0;
         protected String doInBackground(String... args) {
 
-            MongoClient mongoClient = new MongoClient( "192.168.43.89" , 27017 );
+            MongoClient mongoClient = new MongoClient( "192.168.0.6" , 27017 );
             MongoDatabase database = mongoClient.getDatabase("mydb");
             MongoCollection<Document> collection = database.getCollection("userReg");
             MongoCursor<Document> cursor = collection.find().iterator();
